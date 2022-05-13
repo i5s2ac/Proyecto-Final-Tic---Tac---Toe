@@ -69,9 +69,40 @@ def decide_move(board: list, player_id: str) -> [int, int]:
     """
     Decides next move to make.
     """
-    row = randint(0, 2)
-    column = randint(0, 2)
-    return [row, column]
+    
+    # ---------------------------------------------- | ATACAR: DIAGONALES | ---------------------------------------------- 
+
+    # Iniciamos buscando las diagonales: Esto se hace con la finalidad de analizar los diferentes escenarios que existen para completar una linea de tres y tras anaizarlo, proceder a completar dicha linea.
+    
+    #Si las posiciones [0,0] y [1,1] ya estan llenados por nuestro player ID y la posición [2,2] esta vacia, entonces, retornar la posición [2,2].
+    if board[0][0] == player_id and board[1][1] == player_id and board[2][2] == '-':
+        
+        return [2, 2]
+    
+    #Si las posiciones [1,1] y [2,2] ya estan llenados por nuestro player ID y la posición [0,0] esta vacia, entonces, retornar la posición [0,0].
+    elif board[1][1] == player_id and board[2][2] == player_id and board[0][0] == '-':
+        
+        return [0, 0]
+    
+    #Si las posiciones [2,2] y [0,0] ya estan llenados por nuestro player ID y la posición [1,1] esta vacia, entonces, retornar la posición [1,1].
+    elif board[2][2] == player_id and board[0][0] == player_id and board[1][1] == '-':
+        
+        return [1, 1]
+
+    #Si las posiciones [2,0] y [1,1] ya estan llenados por nuestro player ID y la posición [0,2] esta vacia, entonces, retornar la posición [0,2].
+    elif board[2][0] == player_id and board[1][1] == player_id and board[0][2] == '-':
+        
+        return [0, 2]
+    
+    #Si las posiciones [1,1] y [0,2] ya estan llenados por nuestro player ID y la posición [2,0] esta vacia, entonces, retornar la posición [2,0].
+    elif board[1][1] == player_id and board[0][2] == player_id and board[2][0] == '-':
+        
+        return [2, 0]
+    
+    #Si las posiciones [0,2] y [2,0] ya estan llenados por nuestro player ID y la posición [1,1] esta vacia, entonces, retornar la posición [1,1].
+    elif board[0][2] == player_id and board[2][0] == player_id and board[1][1] == '-':
+        
+        return [1, 1]
 
 
 def validate_move(board: list, move: list) -> bool:
