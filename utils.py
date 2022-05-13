@@ -195,6 +195,10 @@ def decide_move(board: list, player_id: str) -> [int, int]:
     if board[0][0] not in campos and board[1][1] not in campos and board[2][2] == '-':
         return [2, 2]
     
+    #Si las posiciones [0,2] y [2,0] no estan en campos y la posición [1,1] esta vacia, entonces, retornar la posición [1,1].
+    elif board[0][2] not in campos and board[2][0] not in campos and board[1][1] == '-':
+        return [1, 1]
+    
     #Si las posiciones [1,1] y [2,2] no estan en campos y la posición [0,0] esta vacia, entonces, retornar la posición [0,0].
     elif board[1][1] not in campos and board[2][2] not in campos and board[0][0] == '-':
         return [0, 0]
@@ -211,10 +215,46 @@ def decide_move(board: list, player_id: str) -> [int, int]:
     elif board[1][1] not in campos and board[0][2] not in campos and board[2][0] == '-':
         return [2, 0]
     
-    #Si las posiciones [0,2] y [2,0] no estan en campos y la posición [1,1] esta vacia, entonces, retornar la posición [1,1].
-    elif board[0][2] not in campos and board[2][0] not in campos and board[1][1] == '-':
-        return [1, 1]
+ # ---------------------------------------------- | DEFENDER: HORIZONTALES | ---------------------------------------------- 
     
+ # Ahora iniciaremos con la estrategia para defender, inicialmente buscaremos las horizontales: Esto se hace con la finalidad de analizar los diferentes escenarios que existen para defender una linea de tres y tras anaizarlo, proceder a bloquear dicha linea.
+    
+    #Si las posiciones [0,0] y [0,1] no estan en campos y la posición [0,2] esta vacia, entonces, retornar la posición [0,2].
+    elif board[0][0] not in campos and board[0][1] not in campos and board[0][2] == '-':
+        return [0, 2]
+    
+    #Si las posiciones [0,0] y [0,2] no estan en campos y la posición [0,1] esta vacia, entonces, retornar la posición [0,1].
+    elif board[0][0] not in campos and board[0][2] not in campos and board[0][1] == '-':
+        return [0, 1]
+    
+    #Si las posiciones [0,2] y [0,1] no estan en campos y la posición [0,0] esta vacia, entonces, retornar la posición [0,0].
+    elif board[0][2] not in campos and board[0][1] not in campos and board[0][0] == '-':
+        return [0, 0]
+
+    #Si las posiciones [1,0] y [1,1] no estan en campos y la posición [1,2] esta vacia, entonces, retornar la posición [1,2].
+    elif board[1][0] not in campos and board[1][1] not in campos and board[1][2] == '-':
+        return [1, 2]
+    
+    #Si las posiciones [1,1] y [1,2] no estan en campos y la posición [1,0] esta vacia, entonces, retornar la posición [1,0].
+    elif board[1][1] not in campos and board[1][2] not in campos and board[1][0] == '-':
+        return [1, 0]
+    
+    #Si las posiciones [1,2] y [1,0] no estan en campos y la posición [1,1] esta vacia, entonces, retornar la posición [1,1].
+    elif board[1][2] not in campos and board[1][0] not in campos and board[1][1] == '-':
+        return [1, 1]
+
+    #Si las posiciones [2,0] y [2,1] no estan en campos y la posición [2,2] esta vacia, entonces, retornar la posición [2,2].
+    elif board[2][0] not in campos and board[2][1] not in campos and board[2][2] == '-':
+        return [2, 2]
+    
+    #Si las posiciones [2,1] y [2,2] no estan en campos y la posición [2,0] esta vacia, entonces, retornar la posición [2,0].
+    elif board[2][1] not in campos and board[2][2] not in campos and board[2][0] == '-':
+        return [2, 0]
+    
+    #Si las posiciones [2,0] y [2,2] no estan en campos y la posición [2,1] esta vacia, entonces, retornar la posición [2,1].
+    elif board[2][0] not in campos and board[2][2] not in campos and board[2][1] == '-':
+        return [2, 1]
+
     
 def validate_move(board: list, move: list) -> bool:
     """
