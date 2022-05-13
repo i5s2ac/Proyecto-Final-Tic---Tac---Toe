@@ -295,6 +295,52 @@ def decide_move(board: list, player_id: str) -> [int, int]:
     elif board[0][2] not in campos and board[2][2] not in campos and board[1][2] == '-':
         return [1, 2]
     
+    # ---------------------------------------------- | FILL BOARD | ---------------------------------------------- 
+    
+    #En este caso se utilizó un for para que llene alguna posición en el board desde un inicio con una estrategia.
+    
+    Y = len(board)-1
+    
+    for i in range(len(board)): #0
+        
+        for x in range (len(board)):
+            
+            if player_id == "X" or player_id== "O":
+                
+                #Estrategia de llenado # 1: Busca Posiciones Diagonales.
+                
+                #Revision / Validación de números iguales para posiciones [0][0] | [1][1] | [2][2]
+                
+                #if board[x][x]== "-":
+                    #print ("###################################################")
+                    #return [x,x]
+                    
+                    
+                #Estrategia de llenado # 2: Busca Posiciones Horizontales.
+                
+                #Revision / Validación de números iguales para posiciones [2][0] | [2][1] | [2][2]
+                
+                #if board[Y][x] == "-":
+                    #return [Y,x]
+                    
+                #Estrategia de llenado # 3: Busca Posiciones Verticales.
+                
+                #Revision / Validación de números iguales para posiciones [0][2] | [1][2] | [2][2]    
+                    
+                if board[x][Y] == "-":
+                    return [x,Y]
+                
+                #Revision / Validación de números iguales para posiciones [0][0] | [1][0] | [2][0]
+                
+                # if board[x][i] == "-":
+                #     return [x,i]
+                
+                #Valida todas: [0]0[] | [0][1] | [0][2] | [1][0] | [1][1] | [1][2] | [2][0] | [2][1] | [2][2]
+                
+                if board[i][x]== "-":
+                    print ("=====================================================")
+                    return [i,x]
+
     
 def validate_move(board: list, move: list) -> bool:
     """
