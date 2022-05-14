@@ -331,9 +331,9 @@ def decide_move(board: list, player_id: str) -> [int, int]:
             
             if player_id == "O" :
                 
-                #Si las posiciones [1,0], [1,2], [2,1] y [1,1] estan vacias, entonces se procedera a validar si esta en alguna esquina.
+                #Si las posiciones [1,0], [1,2], [2,1], [1,1] y [0,1] estan vacias, entonces se procedera a validar si esta en alguna esquina.
                 
-                if board[1][0]=="-" and board[1][2]=="-" and board[2][1]=="-" and board[1][1]=="-": 
+                if board[1][0]=="-" and board[1][2]=="-" and board[2][1]=="-" and board[1][1]=="-" and board[0][1]=="-": 
                 
                     #Si la posición [0,0] es del rival y las posiciones [1,1], [2,2], [2,0], [0,2], [1,0], [1,2] y [2,1] estan vacias, entonces retornar la posición [1,1].
                 
