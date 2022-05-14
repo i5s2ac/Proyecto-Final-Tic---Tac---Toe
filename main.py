@@ -1,7 +1,8 @@
+#Author: Isaac Cyrman (20220289)
+
 from time import sleep 
 import requests
 import utils
-
 
 def main():
 

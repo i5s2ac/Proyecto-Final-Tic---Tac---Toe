@@ -1,3 +1,5 @@
+#Author: Isaac Cyrman (20220289)
+
 """
 [Module] Tic-tac-toe bot utilities.
 """
