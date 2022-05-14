@@ -305,43 +305,77 @@ def decide_move(board: list, player_id: str) -> [int, int]:
         
         for x in range (len(board)):
             
-            if player_id == "X" or player_id== "O":
-                
+            if player_id == "X" :
+   
                 #Estrategia de llenado # 1: Busca Posiciones Diagonales.
                 
                 #Revision / Validación de números iguales para posiciones [0][0] | [1][1] | [2][2]
                 
-                #if board[x][x]== "-":
-                    #print ("###################################################")
-                    #return [x,x]
+                if board[x][x]== "-":
+                    print(x,x)
+                    print ("###################################################")
+                    return [x,x]
                     
-                    
-                #Estrategia de llenado # 2: Busca Posiciones Horizontales.
-                
-                #Revision / Validación de números iguales para posiciones [2][0] | [2][1] | [2][2]
-                
-                #if board[Y][x] == "-":
-                    #return [Y,x]
-                    
-                #Estrategia de llenado # 3: Busca Posiciones Verticales.
-                
-                #Revision / Validación de números iguales para posiciones [0][2] | [1][2] | [2][2]    
-                    
-                if board[x][Y] == "-":
-                    return [x,Y]
-                
-                #Revision / Validación de números iguales para posiciones [0][0] | [1][0] | [2][0]
-                
-                # if board[x][i] == "-":
-                #     return [x,i]
-                
-                #Valida todas: [0]0[] | [0][1] | [0][2] | [1][0] | [1][1] | [1][2] | [2][0] | [2][1] | [2][2]
+
+                #Valida todas: [0][0] | [0][1] | [0][2] | [1][0] | [1][1] | [1][2] | [2][0] | [2][1] | [2][2]
                 
                 if board[i][x]== "-":
+                    print(i,x)
                     print ("=====================================================")
                     return [i,x]
+                
+            
+            #Si nuestro player ID es igual a O, entonces hacer o siguiente:
+            
+            if player_id == "O" :
+                
+                #Si las posiciones [1,0], [1,2], [2,1] y [1,1] estan vacias, entonces se procedera a validar si esta en alguna esquina.
+                
+                if board[1][0]=="-" and board[1][2]=="-" and board[2][1]=="-" and board[1][1]=="-": 
+                
+                    #Si la posición [0,0] es del rival y las posiciones [1,1], [2,2], [2,0], [0,2], [1,0], [1,2] y [2,1] estan vacias, entonces retornar la posición [1,1].
+                
+                    if board[0][0]!=player_id and board[1][1]=="-" and board[2][2]=="-" and board[2][0]=="-" and board[0][2]=="-" and board[1][0]=="-" and board[1][2]=="-" and board[2][1]=="-":
+                        return[1,1]
+                    
+                    #Si la posición [0,2] es del rival y las posiciones [1,1], [2,2], [2,0], [0,0], [1,0], [1,2] y [2,1] estan vacias, entonces retornar la posición [1,1].
+                    
+                    elif board[0][2]!=player_id and board[1][1]=="-" and board[2][2]=="-" and board[0][0]=="-" and board[2][0]=="-" and board[1][0]=="-" and board[1][2]=="-" and board[2][1]=="-":
+                        return[1,1]
+                    
+                    #Si la posición [2,2] es del rival y las posiciones [1,1], [0,0], [2,0], [0,2], [1,0], [1,2] y [2,1] estan vacias, entonces retornar la posición [1,1].
+                    elif board[2][2]!=player_id and board[1][1]=="-" and board[0][2]=="-" and board[0][0]=="-" and board[2][0]=="-" and board[1][0]=="-" and board[1][2]=="-" and board[2][1]=="-":
+                        return[1,1]
+                    
+                    #Si la posición [2,0] es del rival y las posiciones [1,1], [2,2], [0,0], [0,2], [1,0], [1,2] y [2,1] estan vacias, entonces retornar la posición [1,1].
+                    elif board[2][0]!=player_id and board[1][1]=="-" and board[2][2]=="-" and board[0][0]=="-" and board[0][2]=="-"and board[1][0]=="-" and board[1][2]=="-" and board[2][1]=="-":
+                        return[1,1]
+                
+                #Si no se cumple lo anterior, seguir con la estrategia original.
+                
+                else:
+                
+                    for i in range(len(board)): #0
+        
+                        for x in range (len(board)):
+                
+                            #Estrategia de llenado # 1: Busca Posiciones Diagonales.
+                
+                            #Revision / Validación de números iguales para posiciones [0][0] | [1][1] | [2][2]
+                
+                            if board[x][x]== "-":
+                                print(x,x)
+                                print ("###################################################")
+                                return [x,x]
+                
+                            #Valida todas: [0][0] | [0][1] | [0][2] | [1][0] | [1][1] | [1][2] | [2][0] | [2][1] | [2][2]
+                
+                            if board[i][x]== "-":
+                                print(i,x)
+                                print ("=====================================================")
+                                return [i,x]    
+                
 
-    
 def validate_move(board: list, move: list) -> bool:
     """
     Checks if the desired next move hits an empty position.
@@ -387,3 +421,4 @@ def print_board(board: list) -> None:
     print(board[1][0], "|", board[1][1], "|", board[1][2])
     print("----------")
     print(board[2][0], "|", board[2][1], "|", board[2][2], "\n")
+
